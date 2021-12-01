@@ -16,7 +16,7 @@ let package = Package(
             dependencies: [
                 .product(name: "Algorithms", package: "swift-algorithms")
             ],
-            resources: [.process("input.txt")]
+            resources: [.process("Resources/input.txt")]
         ),
         .testTarget(
             name: "day1Tests",
