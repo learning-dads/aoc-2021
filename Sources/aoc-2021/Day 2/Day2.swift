@@ -1,10 +1,7 @@
 import Foundation
 
-public struct PuzzleOne {
-    public let submarinePosition: CGPoint
-    public let multiplication: Int
-
-    public init(_ inputs: String) {
+public class Day2: Puzzle {
+    override func part1() -> String {
         let commands = inputs.split { $0.isNewline }
 
         var position = CGPoint(x: 0, y: 0)
@@ -24,16 +21,10 @@ public struct PuzzleOne {
             }
         }
 
-        submarinePosition = position
-        multiplication = Int(position.x * position.y)
+        return "\(Int(position.x * position.y))"
     }
-}
 
-public struct PuzzleTwo {
-    public let submarinePosition: CGPoint
-    public let multiplication: Int
-
-    public init(_ inputs: String) {
+    override func part2() -> String {
         let commands = inputs.split { $0.isNewline }
 
         var position: (x: Int, y: Int, aim: Int) = (0,0,0)
@@ -54,7 +45,6 @@ public struct PuzzleTwo {
             }
         }
 
-        submarinePosition = CGPoint(x: position.x, y: position.y)
-        multiplication = Int(position.x * position.y)
+        return "\(Int(position.x * position.y))"
     }
 }
