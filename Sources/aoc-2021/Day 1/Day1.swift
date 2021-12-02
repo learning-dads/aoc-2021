@@ -1,6 +1,7 @@
 import Foundation
+import Algorithms
 
-public struct Day1 {
+public struct Day1: Puzzle {
     let inputs: String
 
     init() {
@@ -17,4 +18,37 @@ public struct Day1 {
 
         inputs = try! String(contentsOf: inputURL!)
     }
+
+    func part1() -> String {
+        let lines = inputs.split { $0.isNewline }
+            .map { Int($0)! }
+
+        let numberOfIncreases = lines.adjacentPairs().map { $0 < $1 }
+            .filter { $0 == true }
+            .count
+
+        return "\(numberOfIncreases)"
+    }
+
+    func part2() -> String {
+        let lines = inputs.split { $0.isNewline }
+            .map { Int($0)! }
+
+        let reducedWindows = lines
+            .windows(ofCount: 3)
+            .map { $0.sum() }
+
+        let result = reducedWindows
+            .adjacentPairs()
+            .map { $0 < $1 }
+            .filter { $0 == true }
+            .count
+
+        return "\(result)"
+    }
+}
+
+extension Sequence where Element: Numeric {
+    /// Returns the sum of all elements in the collection
+    func sum() -> Element { return reduce(0, +) }
 }
