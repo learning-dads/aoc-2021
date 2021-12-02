@@ -1,25 +1,8 @@
 import Foundation
 import Algorithms
 
-public struct Day1: Puzzle {
-    let inputs: String
-
-    init() {
-        let root = URL(fileURLWithPath: "\(#file)").deletingLastPathComponent()
-        let enumerator = FileManager.default.enumerator(at: root, includingPropertiesForKeys: nil)
-
-        var inputURL: URL?
-        while let next = enumerator?.nextObject() as? URL {
-            if next.pathComponents.contains("input.txt") == false {
-                continue
-            }
-            inputURL = next
-        }
-
-        inputs = try! String(contentsOf: inputURL!)
-    }
-
-    func part1() -> String {
+public class Day1: Puzzle {
+    override func part1() -> String {
         let lines = inputs.split { $0.isNewline }
             .map { Int($0)! }
 
@@ -30,7 +13,7 @@ public struct Day1: Puzzle {
         return "\(numberOfIncreases)"
     }
 
-    func part2() -> String {
+    override func part2() -> String {
         let lines = inputs.split { $0.isNewline }
             .map { Int($0)! }
 

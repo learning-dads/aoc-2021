@@ -1,24 +1,7 @@
 import Foundation
 
-public struct Day2: Puzzle {
-    let inputs: String
-
-    init() {
-        let root = URL(fileURLWithPath: "\(#file)").deletingLastPathComponent()
-        let enumerator = FileManager.default.enumerator(at: root, includingPropertiesForKeys: nil)
-
-        var inputURL: URL?
-        while let next = enumerator?.nextObject() as? URL {
-            if next.pathComponents.contains("input.txt") == false {
-                continue
-            }
-            inputURL = next
-        }
-
-        inputs = try! String(contentsOf: inputURL!)
-    }
-
-    func part1() -> String {
+public class Day2: Puzzle {
+    override func part1() -> String {
         let commands = inputs.split { $0.isNewline }
 
         var position = CGPoint(x: 0, y: 0)
@@ -41,7 +24,7 @@ public struct Day2: Puzzle {
         return "\(Int(position.x * position.y))"
     }
 
-    func part2() -> String {
+    override func part2() -> String {
         let commands = inputs.split { $0.isNewline }
 
         var position: (x: Int, y: Int, aim: Int) = (0,0,0)
