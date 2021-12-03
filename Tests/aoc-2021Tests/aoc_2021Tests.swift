@@ -19,4 +19,13 @@ final class aoc_2021Tests: XCTestCase {
         XCTAssertEqual(p.p1, "1250395")
         XCTAssertEqual(p.p2, "1451210346")
     }
+
+    func testDay3() {
+        let day = Day3()
+
+        let p = day.results()
+
+        XCTAssertEqual(p.p1, "2724524")
+        XCTAssertEqual(p.p2, "")
+    }
 }
