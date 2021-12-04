@@ -20,20 +20,15 @@ public class Day4: Puzzle {
     }()
 
     override func part1() -> String {
-        var score: Int = -1
         for number in numbers {
             for card in cards {
                 card.search(number)
                 if card.bingo() == true {
-                    score = card.score()
-                    break
+                    return "\(card.score())"
                 }
             }
-
-            if score > 0 { break }
         }
-
-        return "\(score)"
+        fatalError()
     }
 
     override func part2() -> String {
