@@ -2,6 +2,7 @@ import Foundation
 
 public class Puzzle {
     public let inputs: String
+    public let newInput: Input
 
     public init() {
         let className = String(cString: class_getName(type(of: self)))
@@ -25,6 +26,7 @@ public class Puzzle {
         }
 
         inputs = try! String(contentsOf: inputURL!)
+        newInput = Input(file: inputURL!)
     }
 
     func results() -> (p1: String, p2: String) { (part1(), part2()) }
@@ -32,4 +34,14 @@ public class Puzzle {
     func part1() -> String { fatalError("Implement \(#function)") }
 
     func part2() -> String { fatalError("Implement \(#function)") }
+}
+
+
+public class Input {
+    public convenience init(file: URL) { self.init(try! String(contentsOf: file)) }
+    public init(_ raw: String) { self.raw = raw.trimmingCharacters(in: .newlines) }
+
+    public let raw: String
+
+    public lazy var lines: Array<String> = { return raw.components(separatedBy: .newlines).map { String($0) } }()
 }
