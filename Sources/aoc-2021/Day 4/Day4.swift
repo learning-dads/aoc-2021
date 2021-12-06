@@ -32,7 +32,19 @@ public class Day4: Puzzle {
     }
 
     override func part2() -> String {
-        "\(#function)"
+        var results: [String] = []
+
+        for number in numbers {
+            for card in cards {
+                if card.bingo() == false {
+                    card.search(number)
+                    if card.bingo() == true {
+                        results.append("\(card.score())")
+                    }
+                }
+            }
+        }
+        return results.last!
     }
 }
 
@@ -48,9 +60,10 @@ public class BingoCard {
     }
 
     public func search(_ number: Int) {
-        if let mark = card.firstIndex(of: number) {
-            lastNumber = number
+        if let mark = card.firstIndex(of: number),
+           marked.contains(mark) == false {
             marked.append(mark)
+            lastNumber = number
         }
     }
 
